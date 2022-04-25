@@ -1,19 +1,19 @@
 # db-lab
 
-### User Info:
+### Sample User Info retrieved from API:
 ```json
 {
-    "id": 1,
+    "_id": "6266a2b52625614a6a91ba07",
     "username": "Sean Banan",
     "password": "Skaka Rumpa",
 }
 ```
 
-### Posts Info:
+### Sample Post Info retrieved from API:
 ```json
 {
-    "id": 1,
-    "userId": 1,
+    "_id": "6266aaf62390bbba82c0cd4e",
+    "user": "6266a2b52625614a6a91ba07",
     "title": "Skaka RUMPA",
     "about": "I denna post ska jag förklara skaka rumpa..."
 }
