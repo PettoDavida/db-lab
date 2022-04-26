@@ -40,18 +40,19 @@ router.post("/", async (req, res) => {
         hash,
         salt,
     });
-    
-    let name = await User.findOne({username: req.body.username})
-    if (!name) {
-        try {
+
+    try {
+        let name = await User.findOne({username: req.body.username})
+        if (!name) {
             const newUser = await user.save();
             res.status(201).json(newUser);
-        } catch(err) {
-            res.status(400).json({ message: err.message });
+        }else {
+            res.status(403).json({ message: "Username already taken" });
         }
-    }else {
-        res.status(403).json({ message: "Username already taken" });
+    } catch(err) {
+        res.status(400).json({ message: err.message });
     }
+    
 });
 
 router.post("/login", async (req, res) => {
