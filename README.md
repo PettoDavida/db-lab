@@ -1,5 +1,9 @@
 # db-lab
 
+## Start project
+
+I visual studio code håll nere 'ctrl + shift + B' för att starta backend och frontend
+
 ### Sample User Info retrieved from API:
 ```json
 {
