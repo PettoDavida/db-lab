@@ -1,15 +1,13 @@
 let express = require('express');
 let router = express.Router();
 
-const mongoose = require("mongoose");
-
 const Post = require("../models/post");
 const { verifyToken } = require("./common");
 
 router.get("/", async (req, res) => {
     try {
-        let users = await Post.find();
-        res.json(users);
+        let posts = await Post.find();
+        res.json(posts);
     } catch(err) {
         res.status(500).json({ message: err.message });
     }
@@ -17,8 +15,17 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
     try {
-        let user = await Post.findOne({ _id: req.params.id });
-        res.json(user);
+        let post = await Post.findOne({ _id: req.params.id });
+        res.json(post);
+    } catch(err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+router.get("/:userId", async (req, res) => {
+    try {
+        let posts = await Post.find({user: req.params.userId});
+        res.json(posts);
     } catch(err) {
         res.status(500).json({ message: err.message });
     }

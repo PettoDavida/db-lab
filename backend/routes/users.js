@@ -22,6 +22,10 @@ router.post("/", async (req, res) => {
         res.status(400).json({ message: "Password required"});
         return;
     }
+    if (!req.body.username) {
+        res.status(400).json({ message: "Username required"});
+        return;
+    }
 
     let username = req.body.username;
     let password = req.body.password;
@@ -36,8 +40,13 @@ router.post("/", async (req, res) => {
     });
 
     try {
-        const newUser = await user.save();
-        res.status(201).json(newUser);
+        let name = await User.findOne({username: req.body.username})
+        if (!name) {
+            const newUser = await user.save();
+            res.status(201).json(newUser);
+        }else {
+            res.status(403).json({ message: "Username already taken" });
+        }
     } catch(err) {
         res.status(400).json({ message: err.message });
     }
