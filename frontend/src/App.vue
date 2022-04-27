@@ -11,18 +11,9 @@
 </template>
 
 <script>
-//  import HomePage from './components/HomePage.vue'
-// import LogIn from './components/LogIn.vue'
-// import Register from './components/Register.vue'
-// import Vue from 'vue'
-// import Router from 'vue-router'
-
- export default {
-   name: 'App'
- }
-
-
-
+export default {
+  name: 'App'
+}
 </script>
 
 <style>
