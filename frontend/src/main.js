@@ -7,6 +7,7 @@ import HomePage from './components/pages/HomePage.vue'
 import LoginPage from './components/pages/LoginPage.vue'
 import RegisterPage from './components/pages/RegisterPage.vue'
 import ProfilePage from './components/pages/ProfilePage.vue'
+import createPost from './components/pages/createPost.vue'
 
 const router = createRouter({
   routes: [
@@ -29,6 +30,11 @@ const router = createRouter({
         path: "/profile",
         name: 'Profile',
         component: ProfilePage
+    },
+    {
+      path: "/createpost",
+      name: 'createPost',
+      component: createPost
     }
   ],
 

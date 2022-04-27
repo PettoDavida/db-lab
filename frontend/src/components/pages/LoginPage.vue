@@ -4,10 +4,10 @@
 
     <main>
       <div id="form">
-        <h1>Login form</h1>
+        <h1>Logga in</h1>
 
         <div :class="['form-group', !!errors.username && 'has-error']">
-          <label class="form-label" for="username">User Name</label>
+          <label class="form-label" for="username">Användarnamn</label>
           <input
             id="username"
             name="username"
@@ -25,7 +25,7 @@
         </div>
 
         <div :class="['form-group', !!errors.password && 'has-error']">
-          <label class="form-label" for="password">Password</label>
+          <label class="form-label" for="password">Lösenord</label>
           <input
             id="password"
             name="password"
@@ -40,7 +40,7 @@
           </p>
         </div>
 
-        <button @click="loginUser">Submit</button>
+        <button @click="loginUser">Logga in</button>
         <p class="invalidLogin" v-if="loginRequestError.length > 0">{{ this.loginRequestError }}</p>
       </div>
     </main>

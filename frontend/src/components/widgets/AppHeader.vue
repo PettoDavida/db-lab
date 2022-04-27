@@ -9,10 +9,19 @@
         <router-link v-if="!loggedIn" to="/login">
           <li class="material-icons" id="profile">account_circle</li>
         </router-link>
+
+        <router-link to='/register'>
+            <li id="profile">Register</li>
+        </router-link>
+        <router-link to='/createpost'>
+            <li id="profile" class="material-icons">add</li>
+        </router-link>
+
       </ul>
     </div>
-
-    <h1>DB-LAB</h1>
+    <router-link to='/'>
+      <h1>Zoo affären</h1>
+    </router-link>
   </header>
 </template>
 
