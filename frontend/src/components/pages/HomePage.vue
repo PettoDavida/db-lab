@@ -55,7 +55,6 @@ body {
 }
 
 #profile {
-  border: 1px solid black;
   padding: 0;
   margin: 0;
   transform: translateY(15%);
@@ -63,7 +62,6 @@ body {
 
 main {
   width: 100vw;
-  border: 2px solid black;
   height: 100vh;
   display: flex;
   justify-content: flex-start;
@@ -71,13 +69,12 @@ main {
 }
 
 h3 {
-  margin: 40px 0 0;
+  padding-top: 2rem;
 }
 
 ul {
   list-style-type: none;
   padding: 0;
-  border: 1px solid black;
 }
 
 li {
@@ -89,17 +86,20 @@ a {
   color: #42b983;
 }
 
+p{
+  padding: 2.25rem;
+}
+
 #posts {
   height: fit-content;
   width: 80%;
-  border: 1px solid red;
   margin-left: 10%;
 }
 
 #post {
-  border: 1px solid black;
-  width: 80%;
-  margin-left: 10%;
+  box-shadow: 0px 0px 12px -2px rgba(0,0,0,0.5);
+  width: 50%;
+  margin-left: 25%;
   text-align: left;
   line-height: 1.25rem;
   margin-bottom: 3rem;

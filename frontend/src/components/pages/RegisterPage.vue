@@ -3,10 +3,10 @@
     <AppHeader />
     <main>
       <div id="form">
-        <h1>Register form</h1>
+        <h1>Registrera dig</h1>
 
         <div :class="['form-group', !!errors.username && 'has-error']">
-          <label class="form-label" for="username">User Name</label>
+          <label class="form-label" for="username">Användarnamn</label>
           <input
             id="username"
             name="username"
@@ -24,7 +24,7 @@
         </div>
 
         <div :class="['form-group', !!errors.password && 'has-error']">
-          <label class="form-label" for="password">Password</label>
+          <label class="form-label" for="password">Lösenord</label>
           <input
             id="password"
             name="password"
@@ -40,7 +40,7 @@
         </div>
 
         <div :class="['form-group', !!errors.confirmPassword && 'has-error']">
-          <label class="form-label" for="password">Confirm Password</label>
+          <label class="form-label" for="password">Återupprepa lösenord</label>
           <input
             id="confirmPassword"
             name="confirmPassword"
