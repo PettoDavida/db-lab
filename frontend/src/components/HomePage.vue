@@ -1,6 +1,6 @@
 <template>
+<div class="homepage">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
   <header>
 
     
@@ -10,16 +10,16 @@
       account_circle
       
       </li>
-      <li>Log in</li>
-      <li>Register</li>
+      <li><router-link class="nav-link" to="/login">Log in</router-link></li>
+      <li><router-link class="nav-link" to="/register">Register</router-link></li>
     </ul>
     
-    
-    <h1>DB-LAB</h1>
+    <h1><router-link class="nav-link" to="/">DB LAB</router-link></h1>
     
   </header>
 
   <main>
+    
     <div id="posts">
 
     <div id="post">
@@ -41,17 +41,19 @@
     </div>
 
   </main>
-
+</div>
    
 </template>
 
 <script>
+import '../CSS/header.css'
+import '../index.vue'
+// import routes from '../App.vue'
+
 export default {
   name: 'HomePage',
-  props: {
-    msg: String
-  }
 }
+
 
 
 
@@ -63,20 +65,11 @@ export default {
 body{
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }
 
-header{
-  height:10vh;
-  width: 100%;
-  border: 2px solid red;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-header h1{
-  text-align: center;
-  border: 1px solid black;
+.homepage{
+  overflow: hidden;
 }
 
 #profile{
@@ -143,4 +136,7 @@ a {
 
 </style>
 
+<style>
 
+  
+</style>

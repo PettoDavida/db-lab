@@ -1,0 +1,27 @@
+header{
+    height:10vh;
+    width: 100%;
+    border-bottom: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+header h1{
+    justify-content: center;
+}
+header ul{
+    list-style: none;
+    justify-content: space-evenly;
+    width: 100%;
+    display: flex;
+    padding: 1rem;
+}
+
+.header-list{
+width:10%;
+display: flex;
+left:0;
+position: absolute;
+}
