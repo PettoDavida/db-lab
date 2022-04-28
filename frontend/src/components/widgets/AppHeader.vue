@@ -10,17 +10,20 @@
           <li class="material-icons" id="profile">account_circle</li>
         </router-link>
 
-        <router-link to='/register'>
-            <li id="profile">Register</li>
+        <router-link to='/login'>
+            <li id="profile">Logga in</li>
         </router-link>
         <router-link to='/createpost'>
             <li id="profile" class="material-icons">add</li>
+        </router-link>
+         <router-link to='/profile'>
+            <li id="profile">profile</li>
         </router-link>
 
       </ul>
     </div>
     <router-link to='/'>
-      <h1>Zoo affären</h1>
+      <h1>Blogg</h1>
     </router-link>
   </header>
 </template>

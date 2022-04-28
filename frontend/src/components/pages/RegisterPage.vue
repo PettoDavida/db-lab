@@ -56,6 +56,14 @@
         </div>
 
         <button @click="loginUser()">Submit</button>
+
+        <div class="register-div">
+        <p class="register-p">Om du redan har ett konto kan du</p>
+         <router-link to='login'>
+             <li id="profile"> logga in här</li> 
+        </router-link>
+        </div>
+
       </div>
     </main>
   </div>
@@ -196,5 +204,20 @@ input, label{
 
   .form-input-error, .invalidLogin{
     color: red;
+  }
+
+  li{
+    list-style: none;
+  }
+
+  .register-p{
+    margin-right: 0.5rem;
+  }
+
+  .register-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
   }
 </style>

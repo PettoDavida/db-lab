@@ -42,6 +42,14 @@
 
         <button @click="loginUser">Logga in</button>
         <p class="invalidLogin" v-if="loginRequestError.length > 0">{{ this.loginRequestError }}</p>
+
+        <div class="register-div">
+        <p class="register-p">Om du inte har ett konto kan du</p>
+         <router-link to='register'>
+             <li id="profile"> registrera dig här</li> 
+        </router-link>
+        </div>
+
       </div>
     </main>
   </div>
@@ -195,5 +203,20 @@ export default {
 
   .form-input-error, .invalidLogin{
     color: red;
+  }
+
+  li{
+    list-style: none;
+  }
+
+  .register-p{
+    margin-right: 0.5rem;
+  }
+
+  .register-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
   }
 </style>
