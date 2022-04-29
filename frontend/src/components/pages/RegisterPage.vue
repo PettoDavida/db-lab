@@ -145,7 +145,6 @@ export default {
               return res.json();
             })
             .then(() => {
-                // TODO: Redirect to homepage
                 this.$router.push({ path: "/" });
             })
             .catch((e) => {
@@ -156,7 +155,6 @@ export default {
             });
         })
         .catch((err) => {
-          console.log(err);
           err.inner.forEach((error) => {
             this.errors[error.path] = error.message;
           });
@@ -172,21 +170,7 @@ export default {
           this.errors[err.path] = err.message;
         });
     },
-    async login() {
-      const { username, password } = this;
-      const res = await fetch({
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username,
-          password,
-        }),
-      });
-      const data = await res.json();
-      console.log(data);
-    },
+    
   },
 };
 </script>

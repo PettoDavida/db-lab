@@ -91,7 +91,6 @@ export default {
         .then(() => {
           this.errors = {};
 
-          // TODO: Post request
           let obj = {
             username: this.values.username,
             password: this.values.password,

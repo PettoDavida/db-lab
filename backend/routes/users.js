@@ -107,7 +107,6 @@ router.delete("/", verifyToken, async (req, res) => {
 });
 
 router.put("/", verifyToken, async (req, res) => {
-    // TODO: Change username?
 
     try {
         if(req.body.oldPassword && req.body.newPassword) {

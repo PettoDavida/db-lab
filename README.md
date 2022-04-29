@@ -13,6 +13,10 @@ open terminal inside the project root folder and run
 cd backend
 npm i
 
+echo "MONGO_URI=mongodb://127.0.0.1:27017/mydb
+
+ACCESS_TOKEN_SECRET=e90983463aee2c5af087d4097fcdf961a85cd09a159979638c6ebb4b4da679f11b58b30113febeb2a05d0784e7d5b4283d5187a260868b69caf14d975dbb9c2a" > .env
+
 cd ..
 
 cd frontend

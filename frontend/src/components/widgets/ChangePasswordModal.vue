@@ -41,7 +41,6 @@ export default {
     },
 
     submit() {
-      // TODO: Send data to parent
       this.$emit("submit", {
         oldPassword: this.$refs.oldPassword.value,
         newPassword: this.$refs.newPassword.value,

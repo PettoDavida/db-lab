@@ -59,6 +59,8 @@
         @close="closeDeletePostModal"
         @confirm="doDeletePost"
       />
+
+      <SnackbarToast v-if="showConfirmChangePassword"/>
     </main>
   </div>
 </template>
@@ -68,10 +70,11 @@ import AppHeader from "../widgets/AppHeader";
 import ChangePasswordModal from "../widgets/ChangePasswordModal";
 import ConfirmModal from "../widgets/ConfirmModal";
 import EditPostModal from "../widgets/EditPostModal";
+import SnackbarToast from "../widgets/SnackbarToast";
 
 export default {
   name: "ProfilePage",
-  components: { AppHeader, ChangePasswordModal, ConfirmModal, EditPostModal },
+  components: { AppHeader, ChangePasswordModal, ConfirmModal, EditPostModal, SnackbarToast },
 
   data() {
     return {
@@ -82,6 +85,7 @@ export default {
       showDeleteProfileModal: false,
       showEditPostModal: false,
       showDeletePostModal: false,
+      showConfirmChangePassword: false,
 
       editPost: {},
       deletePost: {},
@@ -138,8 +142,6 @@ export default {
     },
 
     doEditPost(value) {
-      console.log(value);
-      console.log("EditPost");
       this.showEditPostModal = false;
 
       let token = localStorage.getItem("loginToken");
@@ -173,7 +175,6 @@ export default {
     },
 
     doChangePassword(value) {
-      // TODO: Confirm old password with error
       this.showChangePasswordModal = false;
 
       let token = localStorage.getItem("loginToken");
@@ -197,7 +198,10 @@ export default {
 
       fetch(`http://localhost:3000/api/users`, headers).then((res) => {
         if (res.status === 200) {
-          this.$router.go();
+          this.showConfirmChangePassword = true;
+          setTimeout(() => {
+            this.showConfirmChangePassword = false;
+          }, 1500);
         }
       });
     },
