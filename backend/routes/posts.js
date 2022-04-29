@@ -22,7 +22,7 @@ router.get("/:id", async (req, res) => {
     }
 });
 
-router.get("/:userId", async (req, res) => {
+router.get("/user/:userId", async (req, res) => {
     try {
         let posts = await Post.find({user: req.params.userId});
         res.json(posts);

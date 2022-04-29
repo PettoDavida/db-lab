@@ -50,12 +50,12 @@
             @blur="validate('confirmPassword')"
             @keypress="validate('confirmPassword')"
           />
-          <p class="form-input-error" v-if="!!errors.confirmPassword">
+          <p class="form-input-error" v-if="errors.confirmPassword">
             {{ errors.confirmPassword }}
           </p>
         </div>
 
-        <button @click="loginUser()">Submit</button>
+        <button @click="registerUser()">Submit</button>
 
         <div class="register-div">
         <p class="register-p">Om du redan har ett konto kan du</p>
@@ -82,7 +82,12 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required("Lösenord är obligatoriskt"),
   confirmPassword: Yup.string()
     .required("Återupprepa lösenord")
-    .oneOf([Yup.ref("password"), null], "Lösenorden måste vara identiska"),
+    .oneOf([Yup.ref('password'), null], 'Your passwords do not match.')
+    /*
+    .test("password-match", "Lösenorden måste vara identiska", (value) => {
+      return parent.password.value === value;
+    })
+    */
 });
 
 import AppHeader from "../widgets/AppHeader";
@@ -107,13 +112,51 @@ export default {
     };
   },
   methods: {
-    loginUser() {
+    registerUser() {
       validationSchema
         .validate(this.values, { abortEarly: false })
         .then(() => {
           this.errors = {};
+
+          let obj = {
+            username: this.values.username,
+            password: this.values.password,
+          };
+
+          let headers = {
+            method: "POST",
+            mode: "cors",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(obj),
+          };
+
+          fetch("http://localhost:3000/api/users/", headers)
+            .then((res) => {
+              if(res.status == 403) {
+                return Promise.reject("Username already taken");
+              } else if(res.status == 500) {
+                return Promise.reject("Internal server error");
+              } else if(res.status == 400){
+                return Promise.reject("Username and Password required")
+              }
+
+              return res.json();
+            })
+            .then(() => {
+                // TODO: Redirect to homepage
+                this.$router.push({ path: "/" });
+            })
+            .catch((e) => {
+              this.loginRequestError = e;
+              setTimeout(() => {
+                this.loginRequestError = "";
+              }, 3000)
+            });
         })
         .catch((err) => {
+          console.log(err);
           err.inner.forEach((error) => {
             this.errors[error.path] = error.message;
           });

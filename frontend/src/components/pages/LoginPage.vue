@@ -118,7 +118,7 @@ export default {
             })
             .then((data) => {
                 localStorage.setItem("loginToken", data.token);
-                // TODO: Redirect to homepage
+                this.$router.push("/");
             })
             .catch((e) => {
               this.loginRequestError = e;

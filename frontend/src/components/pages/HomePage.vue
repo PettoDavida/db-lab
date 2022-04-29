@@ -4,29 +4,9 @@
 
     <main>
       <div id="posts">
-        <div id="post">
-          <h3>Lorem ipsum dolor sit amet consectetur.</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio
-            incidunt dolores temporibus facilis ullam sed. Tenetur tempore
-            cumque nostrum beatae obcaecati ab itaque aspernatur aut corporis?
-            Sint assumenda eum earum.
-          </p>
-          <p id="after-line">
-            <span id="date">26 April 2022</span>
-          </p>
-        </div>
-        <div id="post">
-          <h3>Lorem ipsum dolor sit amet consectetur.</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio
-            incidunt dolores temporibus facilis ullam sed. Tenetur tempore
-            cumque nostrum beatae obcaecati ab itaque aspernatur aut corporis?
-            Sint assumenda eum earum.
-          </p>
-          <p id="after-line">
-            <span id="date">26 April 2022</span>
-          </p>
+        <div id="post" v-for="post in allPosts" :key="post._id">
+          <h3>{{ post.title }}</h3>
+          <p>{{ post.content }}</p>
         </div>
       </div>
     </main>
@@ -34,11 +14,33 @@
 </template>
 
 <script>
-import AppHeader from "../widgets/AppHeader"
+import AppHeader from "../widgets/AppHeader";
 
 export default {
   name: "HomePage",
-  components: { AppHeader }
+  components: { AppHeader },
+
+  data() {
+    return {
+      allPosts: [],
+    };
+  },
+
+  mounted() {
+    let headers = {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    fetch("http://localhost:3000/api/posts/", headers)
+      .then((res) => res.json())
+      .then(data => { 
+        this.allPosts = data;
+      });
+  },
 };
 </script>
 
@@ -86,7 +88,7 @@ a {
   color: #42b983;
 }
 
-p{
+p {
   padding: 2.25rem;
 }
 
@@ -97,7 +99,7 @@ p{
 }
 
 #post {
-  box-shadow: 0px 0px 12px -2px rgba(0,0,0,0.5);
+  box-shadow: 0px 0px 12px -2px rgba(0, 0, 0, 0.5);
   width: 50%;
   margin-left: 25%;
   text-align: left;
