@@ -107,23 +107,30 @@ router.delete("/", verifyToken, async (req, res) => {
     }
 });
 
-router.put("/", verifyToken, async (req, res) => {
+router.put("/password", verifyToken, async (req, res) => {
+    if(!req.body.oldPassword) {
+        res.status(400).json({ message: "Require 'oldPassword'" });
+        return;
+    }
+
+    if(!req.body.newPassword) {
+        res.status(400).json({ message: "Require 'newPassword'" });
+        return;
+    }
 
     try {
-        if(req.body.oldPassword && req.body.newPassword) {
-            let password = req.body.oldPassword;
-            let salt = req.user.salt;
-            let hashPassword = crypto.pbkdf2Sync(password, salt, 1000, 64, 'sha512').toString("hex");
+        let password = req.body.oldPassword;
+        let salt = req.user.salt;
+        let hashPassword = crypto.pbkdf2Sync(password, salt, 1000, 64, 'sha512').toString("hex");
 
-            if(req.user.hash === hashPassword) {
-                let newSalt = crypto.randomBytes(16).toString("hex");
-                let newHashPassword = crypto.pbkdf2Sync(req.body.newPassword, newSalt, 1000, 64, 'sha512').toString("hex");
+        if(req.user.hash === hashPassword) {
+            let newSalt = crypto.randomBytes(16).toString("hex");
+            let newHashPassword = crypto.pbkdf2Sync(req.body.newPassword, newSalt, 1000, 64, 'sha512').toString("hex");
 
-                await User.updateOne({ _id: req.user.id }, {$set: { hash: newHashPassword, salt: newSalt }});
-                res.sendStatus(200);
-            } else {
-                res.sendStatus(401);
-            }
+            await User.updateOne({ _id: req.user.id }, {$set: { hash: newHashPassword, salt: newSalt }});
+            res.sendStatus(200);
+        } else {
+            res.sendStatus(401);
         }
     } catch(err) {
         res.status(500).json({ message: err.message });   
