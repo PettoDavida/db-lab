@@ -1,0 +1,33 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "dev",
+			"path": "backend/",
+			"problemMatcher": [],
+			"label": "dev backend",
+			"detail": "nodemon server.js"
+		},
+		{
+			"type": "npm",
+			"script": "serve",
+			"path": "frontend/",
+			"problemMatcher": [],
+			"label": "serve frontend",
+			"detail": "vue-cli-service serve"
+		},
+		{
+			"label": "Run Both",
+			"dependsOn": [
+				"serve frontend",
+				"dev backend"
+			],
+			"problemMatcher": [],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		}
+	]
+}
