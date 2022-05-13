@@ -47,16 +47,20 @@ router.post("/", verifyToken, async (req, res) => {
 });
 
 router.put("/:id", verifyToken, async (req, res) => {
+    if(!req.body.title) {
+        res.status(400).json({ message: "Require 'title'" });
+        return;
+    }
+
+    if(!req.body.content) {
+        res.status(400).json({ message: "Require 'content'" });
+        return;
+    }
+
     try {
         let post = await Post.findOne({ _id: req.params.id, user: req.user._id });
         if(post) {
-            if(req.body.newTitle) {
-                await Post.updateOne({ _id: post._id }, {$set: { title: req.body.newTitle }});
-            }
-
-            if(req.body.newContent) {
-                await Post.updateOne({ _id: post._id }, {$set: { content: req.body.newContent }});
-            }
+            await Post.updateOne({ _id: post._id }, {$set: { title: req.body.title, content: req.body.content }});
 
             res.sendStatus(200);
         } else {

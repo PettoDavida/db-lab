@@ -148,8 +148,8 @@ export default {
       if (!token) return;
 
       let body = {
-        newTitle: value.title,
-        newContent: value.content,
+        title: value.title,
+        content: value.content,
       };
 
       let headers = {
