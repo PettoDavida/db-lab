@@ -1,94 +1,40 @@
-# db-lab
+# Anonymous blog 
+
+## About
+
+Anonymous blog is a small lab where we created a backend with REST-api and a frontend to present and access the api. It's a place where you can post whatever you want without anyone being able to know who posted it. Anyone can read posts on the site but you need an account to be able to post posts. Only the user that created the posts can edit or delete them and if they choose to delete their account the posts will follow them into the grave.
+
+## Build Project
+
+open terminal inside the project root folder and run
+
+```
+
+cd backend
+npm i
+
+echo "MONGO_URI=mongodb://127.0.0.1:27017/mydb
+
+ACCESS_TOKEN_SECRET=e90983463aee2c5af087d4097fcdf961a85cd09a159979638c6ebb4b4da679f11b58b30113febeb2a05d0784e7d5b4283d5187a260868b69caf14d975dbb9c2a" > .env
+
+cd ..
+
+cd frontend
+npm i
+```
 
 ## Start project
 
-I visual studio code håll nere 'ctrl + shift + B' för att starta backend och frontend
+In visual studio code hold 'ctrl + shift + B' to start backend and frontend
 
-### Sample User Info retrieved from API:
-```json
-{
-    "_id": "6266a2b52625614a6a91ba07",
-    "username": "Sean Banan",
-    "password": "Skaka Rumpa",
-}
-```
-
-### Sample Post Info retrieved from API:
-```json
-{
-    "_id": "6266aaf62390bbba82c0cd4e",
-    "user": "6266a2b52625614a6a91ba07",
-    "title": "Skaka RUMPA",
-    "about": "I denna post ska jag förklara skaka rumpa..."
-}
-```
-
-### User /api/users
+If you arent using VS code u need to open the terminal inside the backend/frontend folders respectively and run
 
 ```
-GET /api/users
-- Get all the users
-
-POST /api/users
-- Register new users
-
-POST /api/users/login
-Content-Body JSON Example:
-{
-    "username": "monke",
-    "password": "banana",
-}
-
-PUT /api/users
-Content-Body JSON Example:
-{
-    "oldPassword": "banana",
-    "newPassword": "apple"
-}
-- Change the password of the current logged in user
-- Requires authorization token
-  - Example: 'Authorization: Bearer <USER_TOKEN>'
-
-DELETE /api/users
-- Delete the current logged in user
-- Requires authorization token
-  - Example: 'Authorization: Bearer <USER_TOKEN>'
-
-GET /api/users/{user_id}
-- user_id: The ID of the user you want to retrieve infomation from
+npm run dev
+```
+inside backend folder and run
 
 ```
-
-### Posts /api/posts
+npm run serve
 ```
-GET: /api/posts
-- Get all the posts
-
-POST: /api/posts
-Content-Body JSON Example:
-{
-    "title": "Monke get banana",
-    "content": "Banana hanging from tree, Monke need get",
-}
-- Create a new post for this user
-- Requires authorization token
-  - Example: 'Authorization: Bearer <USER_TOKEN>'
-
-GET: /api/posts/{post_id}
-- Get post by ID
-
-PUT: /api/posts/{post_id}
-Content-Body JSON Example:
-{
-    "newTitle": "Monke got banana",
-    "newContent": "Monke now happy",
-}
-- Edit post by ID
-- Requires authorization token
-  - Example: 'Authorization: Bearer <USER_TOKEN>'
-
-DELETE: /api/posts/{post_id}
-- Delete post by ID
-- Requires authorization token
-  - Example: 'Authorization: Bearer <USER_TOKEN>'
-```
+inside frontend folder

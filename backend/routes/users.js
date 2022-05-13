@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 
 const User = require("../models/user");
+const Post = require("../models/post");
 
 const { verifyToken } = require("./common");
 
@@ -12,6 +13,15 @@ router.get("/", async (req, res) => {
     try {
         let users = await User.find();
         res.json(users);
+    } catch(err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+router.get("/:id", async (req, res) => {
+    try {
+        let user = await User.findOne({ _id: req.params.id });
+        res.json(user);
     } catch(err) {
         res.status(500).json({ message: err.message });
     }
@@ -26,8 +36,6 @@ router.post("/", async (req, res) => {
         res.status(400).json({ message: "Username required"});
         return;
     }
-    
-    
 
     let username = req.body.username;
     let password = req.body.password;
@@ -78,7 +86,8 @@ router.post("/login", async (req, res) => {
             res.status(403).json({ message: "Username or Password incorrect" });
         }
     } catch(err) {
-        res.status(400).json({ message: err.message });
+        console.log(err);
+        res.status(500).json({ message: "Internal server error" });
     }
 });
 
@@ -87,6 +96,7 @@ router.delete("/", verifyToken, async (req, res) => {
         let user = await User.findOne({ _id: req.user.id });
 
         if(user) {
+            await Post.deleteMany({ user: req.user.id });
             await User.deleteMany({ _id: req.user.id });
             res.sendStatus(200);
         } else {
@@ -98,7 +108,6 @@ router.delete("/", verifyToken, async (req, res) => {
 });
 
 router.put("/", verifyToken, async (req, res) => {
-    // TODO: Change username?
 
     try {
         if(req.body.oldPassword && req.body.newPassword) {

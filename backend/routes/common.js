@@ -15,7 +15,6 @@ async function verifyToken(req, res, next) {
             try {
                 let users = await User.find({ _id: data.id });
                 if(users.length > 0) {
-                    // TODO: Maybe check length == 1
                     req.user = users[0];
                     next()
                 } else {
