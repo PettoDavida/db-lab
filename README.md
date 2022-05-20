@@ -23,6 +23,8 @@ cd frontend
 npm i
 ```
 
+Own Secret in ACCESS_TOKEN_SECRET can be anything you'd like
+
 ## Start project
 
 In visual studio code hold 'ctrl + shift + B' to start backend and frontend
