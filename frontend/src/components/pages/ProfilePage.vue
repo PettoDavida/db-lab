@@ -148,8 +148,8 @@ export default {
       if (!token) return;
 
       let body = {
-        newTitle: value.title,
-        newContent: value.content,
+        title: value.title,
+        content: value.content,
       };
 
       let headers = {
@@ -196,7 +196,7 @@ export default {
         body: JSON.stringify(body),
       };
 
-      fetch(`http://localhost:3000/api/users`, headers).then((res) => {
+      fetch(`http://localhost:3000/api/users/password`, headers).then((res) => {
         if (res.status === 200) {
           this.showConfirmChangePassword = true;
           setTimeout(() => {
