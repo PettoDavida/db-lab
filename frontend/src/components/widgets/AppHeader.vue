@@ -10,7 +10,7 @@
           <li class="material-icons" id="profile">account_circle</li>
         </router-link>
 
-        <button class="addButton" @click="openCreatePostModal">
+        <button v-if="loggedIn" class="addButton" @click="openCreatePostModal">
           <li id="profile" class="material-icons">add</li>
         </button>
       </ul>
@@ -79,7 +79,8 @@ export default {
 
     doLogout() {
       localStorage.removeItem("loginToken");
-      this.$router.push("/");
+      this.loggedIn = false
+      this.$router.push('/')
     }
   }
 };
