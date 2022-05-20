@@ -40,3 +40,5 @@ inside backend folder and run
 npm run serve
 ```
 inside frontend folder
+
+[GitHub](https://github.com/PettoDavida/db-lab)
